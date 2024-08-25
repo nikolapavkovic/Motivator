@@ -1,5 +1,6 @@
 package com.example.Motivator.entity;
 
+import com.example.Motivator.model.QuoteType;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,4 +16,8 @@ public class QuoteEntity {
 
     @Column(name = "author")
     private String author;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private QuoteType type;
 }
