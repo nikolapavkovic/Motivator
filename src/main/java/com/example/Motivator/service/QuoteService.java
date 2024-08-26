@@ -1,8 +1,7 @@
 package com.example.Motivator.service;
 
 import com.example.Motivator.entity.QuoteEntity;
-import com.example.Motivator.mapper.QuoteMapper;
-import com.example.Motivator.model.QuoteType;
+import com.example.Motivator.model.dto.GetQuoteDto;
 import com.example.Motivator.repository.QuoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,8 +14,9 @@ public class QuoteService {
 
     private final QuoteRepository quoteRepository;
 
-    public Optional<QuoteEntity> getQuote(Integer id){
-        return quoteRepository.findById(id);
+    public QuoteEntity getQuote(Integer id){
+        Optional<QuoteEntity> quoteEntity = quoteRepository.findById(id);
+        return quoteEntity.orElse(null);
     }
 
     public void addQuote(QuoteEntity quoteEntity){

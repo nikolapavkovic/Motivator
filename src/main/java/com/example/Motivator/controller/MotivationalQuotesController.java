@@ -1,13 +1,10 @@
 package com.example.Motivator.controller;
 
-import com.example.Motivator.mapper.QuoteMapper;
 import com.example.Motivator.model.dto.AddQuoteDto;
+import com.example.Motivator.model.dto.GetQuoteDto;
 import com.example.Motivator.service.QuoteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/1/quotes/motivational")
@@ -18,7 +15,12 @@ public class MotivationalQuotesController {
 
     @PostMapping
     public void create(@RequestBody AddQuoteDto addQuoteDto){
-        quoteService.addQuote(QuoteMapper.fromDto(addQuoteDto));
+        quoteService.addQuote(AddQuoteDto.fromDto(addQuoteDto));
+    }
+
+    @GetMapping("/{id}")
+    public GetQuoteDto getById(@PathVariable Integer id){
+        return GetQuoteDto.fromEntity(quoteService.getQuote(id));
     }
 
 }
