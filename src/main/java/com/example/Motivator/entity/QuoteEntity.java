@@ -17,7 +17,7 @@ public class QuoteEntity {
     @Column(name = "author")
     private String author;
 
-    @Column
+    @Column(name = "type")
     @Enumerated(EnumType.STRING)
     private QuoteType type;
 }
