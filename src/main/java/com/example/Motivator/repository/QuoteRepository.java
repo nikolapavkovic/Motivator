@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface QuoteRepository extends JpaRepository<QuoteEntity, Integer> {
+public interface QuoteRepository extends JpaRepository<QuoteEntity, Long> {
 
     List<QuoteEntity> findAllByAuthor(String author);
 

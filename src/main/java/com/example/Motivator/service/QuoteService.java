@@ -20,7 +20,7 @@ public class QuoteService {
 
     private final QuoteRepository quoteRepository;
 
-    public QuoteEntity getQuote(Integer id) {
+    public QuoteEntity getQuote(Long id) {
         Optional<QuoteEntity> quoteEntity = quoteRepository.findById(id);
         return quoteEntity.orElseThrow(() -> new QuoteNotFoundException("Quote not found!"));
     }
@@ -29,12 +29,16 @@ public class QuoteService {
         quoteRepository.save(quoteEntity);
     }
 
-    public void deleteQuote(Integer id) {
+    public void deleteQuote(Long id) {
         quoteRepository.deleteById(id);
     }
 
     public QuoteDto updateQuote(Long id, AddQuoteDto quoteDto) {
-        return QuoteMapper.fromEntity(quoteRepository.save(QuoteMapper.fromDto(quoteDto, id)));
+        if(quoteRepository.existsById(id)){
+            return QuoteMapper.fromEntity(quoteRepository.save(QuoteMapper.fromDto(quoteDto, id)));
+
+        }
+        else throw new QuoteNotFoundException("Quote not found!");
     }
 
     public List<QuoteDto> getAllQuotesByAuthor(String author) {

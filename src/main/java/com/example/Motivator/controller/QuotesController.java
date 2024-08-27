@@ -22,12 +22,12 @@ public class QuotesController {
 
     @GetMapping("/{id}")
     @ResponseBody
-    public QuoteDto getById(@PathVariable Integer id) {
+    public QuoteDto getById(@PathVariable Long id) {
         return QuoteMapper.fromEntity(quoteService.getQuote(id));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         quoteService.deleteQuote(id);
     }
 
