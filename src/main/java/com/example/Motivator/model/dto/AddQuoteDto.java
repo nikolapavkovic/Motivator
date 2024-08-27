@@ -1,10 +1,11 @@
 package com.example.Motivator.model.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class QuoteDto {
-    private Long id;
+@Getter
+@Setter
+public class AddQuoteDto {
     private String content;
     private String author;
     private String type;

@@ -2,12 +2,14 @@ package com.example.Motivator.model.dto.mapper;
 
 import com.example.Motivator.entity.QuoteEntity;
 import com.example.Motivator.model.QuoteType;
+import com.example.Motivator.model.dto.AddQuoteDto;
 import com.example.Motivator.model.dto.QuoteDto;
 
 public class QuoteMapper {
 
     public static QuoteDto fromEntity(final QuoteEntity quoteEntity) {
         QuoteDto quoteDto = new QuoteDto();
+        quoteDto.setId(quoteEntity.getId());
         quoteDto.setContent(quoteEntity.getContent());
         quoteDto.setAuthor(quoteEntity.getAuthor());
         quoteDto.setType(quoteEntity.getType().name());
@@ -22,7 +24,7 @@ public class QuoteMapper {
         return quoteEntity;
     }
 
-    public static QuoteEntity fromDto(final QuoteDto addQuoteDto, final Long id) {
+    public static QuoteEntity fromDto(final AddQuoteDto addQuoteDto, final Long id) {
         QuoteEntity quoteEntity = new QuoteEntity();
         quoteEntity.setId(id);
         quoteEntity.setContent(addQuoteDto.getContent());

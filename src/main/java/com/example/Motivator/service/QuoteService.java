@@ -1,8 +1,10 @@
 package com.example.Motivator.service;
 
 import com.example.Motivator.entity.QuoteEntity;
+import com.example.Motivator.model.dto.AddQuoteDto;
 import com.example.Motivator.model.dto.QuoteDto;
 import com.example.Motivator.model.dto.mapper.QuoteMapper;
+import com.example.Motivator.model.exception.QuoteNotFoundException;
 import com.example.Motivator.repository.QuoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,7 @@ public class QuoteService {
 
     public QuoteEntity getQuote(Integer id) {
         Optional<QuoteEntity> quoteEntity = quoteRepository.findById(id);
-        return quoteEntity.orElse(null);
+        return quoteEntity.orElseThrow(() -> new QuoteNotFoundException("Quote not found!"));
     }
 
     public void addQuote(QuoteEntity quoteEntity) {
@@ -31,7 +33,7 @@ public class QuoteService {
         quoteRepository.deleteById(id);
     }
 
-    public QuoteDto updateQuote(Long id, QuoteDto quoteDto) {
+    public QuoteDto updateQuote(Long id, AddQuoteDto quoteDto) {
         return QuoteMapper.fromEntity(quoteRepository.save(QuoteMapper.fromDto(quoteDto, id)));
     }
 
