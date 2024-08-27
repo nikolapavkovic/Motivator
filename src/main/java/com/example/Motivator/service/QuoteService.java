@@ -1,7 +1,6 @@
 package com.example.Motivator.service;
 
 import com.example.Motivator.entity.QuoteEntity;
-import com.example.Motivator.model.dto.GetQuoteDto;
 import com.example.Motivator.repository.QuoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
