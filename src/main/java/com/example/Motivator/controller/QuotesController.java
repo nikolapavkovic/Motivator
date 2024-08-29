@@ -7,10 +7,11 @@ import com.example.Motivator.service.QuoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/1/quotes/")
+@RequestMapping("/1/quotes")
 @RequiredArgsConstructor
 public class QuotesController {
     private final QuoteService quoteService;
@@ -50,5 +51,10 @@ public class QuotesController {
     @GetMapping("/getAllAuthors")
     public List<String> getAllAuthors() {
         return quoteService.getAllAuthors();
+    }
+
+    @PostMapping("/sendBySms/{quoteId}")
+    public okhttp3.ResponseBody sendQuoteToEmail(@PathVariable Long quoteId) {
+        return quoteService.sendQuoteByEmail(quoteId);
     }
 }
